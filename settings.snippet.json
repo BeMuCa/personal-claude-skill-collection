@@ -1,0 +1,33 @@
+{
+  "_comment": "Merge these keys into ~/.claude/settings.json (do not replace the file). Replace NODE with the output of `which node` on the target machine.",
+  "attribution": {
+    "commit": "",
+    "pr": ""
+  },
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          { "type": "command", "command": "\"NODE\" \"$HOME/.claude/hooks/verify-gate.js\"", "timeout": 5 }
+        ]
+      },
+      {
+        "hooks": [
+          { "type": "command", "command": "\"NODE\" \"$HOME/.claude/hooks/spec-guard.js\"", "timeout": 5 }
+        ]
+      }
+    ],
+    "SubagentStop": [
+      {
+        "hooks": [
+          { "type": "command", "command": "\"NODE\" \"$HOME/.claude/hooks/verify-gate.js\"", "timeout": 5 }
+        ]
+      },
+      {
+        "hooks": [
+          { "type": "command", "command": "\"NODE\" \"$HOME/.claude/hooks/spec-guard.js\"", "timeout": 5 }
+        ]
+      }
+    ]
+  }
+}
