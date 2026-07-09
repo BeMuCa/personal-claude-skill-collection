@@ -180,12 +180,18 @@ Live:
   probe complied by re-reading the file to verify before finishing —
   the intended behavior, observed end-to-end.
 
-Known limitation (confirmed by two independent probes, Haiku and Sonnet):
-Agent-tool subagents do NOT receive the global CLAUDE.md text in context.
-Subagent coverage therefore rests on the skills (visible to them) and the
-SubagentStop gate (active). If per-agent rules are wanted later, they must
-go into each agent definition's own prompt — rejected for GSD agents since
-GSD updates overwrite those files.
+CORRECTION (2026-07-09): An earlier version of this section claimed
+"Agent-tool subagents do NOT receive the global CLAUDE.md." That was WRONG —
+a testing artifact. The two probes ran in a session that started before
+CLAUDE.md existed, so their subagents inherited an empty start-time memory
+snapshot. Per Claude Code docs (sub-agents.md, "What loads at startup") and a
+clean re-test from a fresh session, non-fork subagents DO load
+~/.claude/CLAUDE.md — a general-purpose subagent quoted the rules verbatim.
+The only exceptions are the built-in Explore and Plan agents, which skip
+CLAUDE.md (and git status) for speed. So subagent discipline coverage rests
+on CLAUDE.md itself (for general-purpose/custom agents) plus the skills and
+the SubagentStop gate. AGENTS.md is not loaded by Claude Code; import it via
+CLAUDE.md if ever needed.
 
 Deviation from plan: the Task 6 hook code was amended post-review
 (`process.exit(0)` → `process.exitCode = 0`) to guarantee the block

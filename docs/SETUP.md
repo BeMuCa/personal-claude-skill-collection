@@ -38,6 +38,6 @@ Also tracked as baseline (managed by their own installers — do not hand-edit):
 
 ## Known limitations (by design)
 
-- Agent-tool subagents do not receive the global CLAUDE.md text; they are covered by the skills + SubagentStop hooks.
+- Non-fork subagents (general-purpose, custom agents) DO receive the global CLAUDE.md, per Claude Code docs and verified by a clean re-test. The built-in Explore and Plan agents are the exception — they skip CLAUDE.md for speed. AGENTS.md is not loaded by Claude Code.
 - verify-gate triggers on any Bash use, including read-only commands; benign one-shot.
 - spec-guard cannot see file changes made via Bash commands (only Edit/Write/NotebookEdit).
