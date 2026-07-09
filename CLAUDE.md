@@ -81,3 +81,19 @@ When reporting information to the user, be extremely concise - sacrifice grammar
 If a skill in this table applies, invoke it before proceeding. Do not rationalize skipping it.
 
 These guidelines are working if: fewer unnecessary changes in diffs, fewer rewrites due to overcomplication, and clarifying questions come before implementation rather than after mistakes.
+
+# Context frugality (always on)
+
+## Reading code
+- To answer where/how/what questions about code: grep/glob first, then Read only the line ranges around the matched functions — this applies to the file that seems most central too. Full-file Reads are for small files (under ~150 lines) or files about to be edited broadly; consecutive ranges that cover a whole file are a full read.
+- Never re-read a file after your own Edit/Write — the tool result already confirmed the change.
+- Stop reading once the question is answered; skip files the question never mentioned.
+- Use the exploration-router skill before starting any code exploration.
+
+## Delegation
+- Exploration that fans out past ~3 files: dispatch one Explore agent with every sub-question batched, requiring conclusions + file:line references only — no file dumps.
+- Set `model` explicitly on every subagent dispatch: haiku for exploration and well-specified mechanical tasks, sonnet for multi-file integration, the strongest model for design and risky reviews.
+
+## Output & state
+- Truncate command output at the source: `2>&1 | tail -20` on builds and tests, `head`/`-n` on listings, `--quiet` flags where available.
+- Long intermediate results (findings, inventories, plans) go into a scratchpad file; carry the path forward, not the content.
