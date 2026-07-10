@@ -27,6 +27,7 @@ Route each code question to the cheapest tool that answers it; escalate only aft
 | Structure / API of a file or module? | claude-mem:smart-explore outline; fallback `grep -n "^export\|^function\|^class"` |
 | How does feature X work across many files? | Explore agent on haiku, one batched question |
 | What depends on X / safe to change? | gitnexus impact/query if repo is indexed (note: GitNexus is PolyForm Noncommercial — personal use); else Grep for callers |
+| Grep for the question's words (and obvious synonyms) found nothing — vocabulary mismatch? | `semble search "<what you mean>" . --top-k 5` (local semantic search; returns file/lines/content by meaning), then ranged Read the hits. If semble is unavailable or also misses: Explore agent |
 | Which of many dirs/conventions contains X? | Explore agent, "very thorough" |
 | Architecture orientation of a whole module/subsystem? | `npx repomix --compress <dir>` (tree-sitter, signatures-only) piped to a scratch file, read that; fallback: Explore agent |
 | Exact code needed for an edit | Ranged Read around the grep match; full Read only for small files or broad edits |
