@@ -78,3 +78,28 @@ discriminate; T4's question was ambiguous (two version checks exist); headless
 mode cannot exercise approval gates or multi-turn discipline. The strongest
 claims here are the haiku T1 flip (clean, causal: skill invoked → behavior
 changed) and the absence of cost bloat anywhere.
+
+## Round 2 (same day): semantic-search & LSP tiers tested empirically
+
+Installed and tested (options 1 & 2 revisited at user request):
+- **semble** (uv tool, v-latest; one-time ~64MB HF model download at first use).
+  Direct CLI sanity check: ranked the vocabulary-mismatched target #1 by meaning.
+  A/B (S0 = current setup vs S1 = + semble instruction; haiku & sonnet, clean
+  fixture with zero shared vocabulary): **all arms correct at equal cost; S1
+  didn't need semble** — the layer's grep-first rules solved vocabulary mismatch
+  by searching concept-adjacent terms. First A/B round was voided by a fixture
+  leak (docstring shared a word with the question) — disclosed, fixed, re-run.
+  **Decision: do NOT wire semble into the global layer** (no measured lift,
+  extra dependency + instruction tokens). It stays installed as an optional CLI.
+  Caveat: a 15-file synthetic fixture cannot reproduce real-codebase scale;
+  revisit if grep genuinely dead-ends on a large repo.
+- **Serena** (uv tool `serena-agent`): functionally validated headless via
+  `--mcp-config` — real LSP calls (`find_symbol`, `find_referencing_symbols`),
+  correct symbol answer, 4 turns. Gotcha found: **line numbers are 0-indexed**
+  (reported :5/:14 vs grep's :6/:15) — verify before citing. Efficiency benefit
+  can't show on a tiny fixture; adopt per-project on large codebases:
+  `claude mcp add serena -- serena start-mcp-server --context claude-code --project "$(pwd)"`
+  with `SERENA_USAGE_REPORTING=false` (it phones home by default).
+- **Bonus finding:** all 8 round-2 runs invoked `exploration-router` first —
+  the escalation-table row (not the in-body hard-gate) is what fixed router
+  invocation. Positive confirmation on both models.
