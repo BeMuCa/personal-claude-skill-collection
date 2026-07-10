@@ -28,6 +28,7 @@ Also tracked as baseline (managed by their own installers — do not hand-edit):
 | superpowers plugin v6.1.1 | brainstorming, writing-plans, subagent-driven-development, TDD, systematic-debugging, verification-before-completion, etc. | Claude Code plugin marketplace (`claude-plugins-official`) |
 | GSD (get-shit-done) | ~70 `gsd-*` skills, 33 agents, hooks, statusline | GSD installer; state in `gsd-install-state.json` |
 | GitNexus | `gitnexus-*` skills, hook, MCP server (code knowledge graph) | GitNexus installer |
+| Serena / semble / repomix | Optional exploration tools (LSP symbols / semantic search / repo outlines) — benchmarked 2026-07-10; see the repo README's external-dependency table for verified install commands and when to use each | `uv tool install -p 3.13 serena-agent` · `uv tool install semble` · `npm i -g repomix` |
 
 ## Porting to another machine
 

@@ -23,7 +23,7 @@ Route each code question to the cheapest tool that answers it; escalate only aft
 
 | Question shape | Cheapest adequate tool |
 |---|---|
-| Where is symbol X defined / used? | `Grep -n` inline, then ranged Read around matches |
+| Where is symbol X defined / used? | If `mcp__serena__*` tools are available in this session: `find_symbol` / `find_referencing_symbols` (exact, one call — but its line numbers are 0-indexed; +1 before citing). Else: `Grep -n` inline, then ranged Read around matches |
 | Structure / API of a file or module? | claude-mem:smart-explore outline; fallback `grep -n "^export\|^function\|^class"` |
 | How does feature X work across many files? | Explore agent on haiku, one batched question |
 | What depends on X / safe to change? | gitnexus impact/query if repo is indexed (note: GitNexus is PolyForm Noncommercial — personal use); else Grep for callers |
