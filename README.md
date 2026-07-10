@@ -3,6 +3,7 @@
 Global rules, skills, and hooks that make every Claude Code model/agent work with
 verified evidence, right-sized code changes, and mechanical verification gates.
 Full component descriptions: `docs/SETUP.md`. Design history: `docs/superpowers/`.
+Measured effect (A/B benchmark, 3 models): `docs/superpowers/2026-07-10-discipline-layer-benchmark.md`.
 
 ## Install (global effect)
 
@@ -36,7 +37,8 @@ non-interactive CLI (`claude plugin ...`) as reported by `claude plugin --help`.
 | **superpowers** (recommended) | CLAUDE.md's escalation table points to `superpowers:verification-before-completion` and `superpowers:systematic-debugging`; `quality-run` borrows its review patterns | `claude plugin marketplace add anthropics/claude-plugins-official` then `claude plugin install superpowers@claude-plugins-official` (installs to user scope by default) |
 | **frontend-design** (optional) | UI design skill from the same marketplace | `claude plugin install frontend-design@claude-plugins-official` |
 | **GSD / get-shit-done** (optional) | `quality-run` defers to `/gsd:code-review`, `/gsd:verify-work`, `/gsd:add-tests` in GSD-managed repos | Repo: `github.com/gsd-build/get-shit-done` — follow its own install instructions (no verified one-liner). |
-| **gitnexus** (optional) | The context-frugality routing table suggests it for impact/dependency queries; degrades to `grep` if absent | Install source not verified on this machine — supply your own. Candidate (UNVERIFIED, noncommercial license): `github.com/abhigyanpatwari/GitNexus` |
+| **gitnexus** (optional) | The context-frugality routing table suggests it for impact/dependency queries; degrades to `grep` if absent | Almost certainly `github.com/abhigyanpatwari/GitNexus` (matching name, MCP toolset, and LICENSE) — ⚠️ **PolyForm Noncommercial 1.0.0**: free for personal use only; check before commercial use. No install-source metadata on the reference machine, so confirm the repo before automating. |
+| **repomix** (optional, zero-install) | exploration-router's architecture-orientation tier runs `npx repomix --compress` — npx downloads it on demand, nothing to preinstall (verified v1.16.0); falls back to an Explore agent if unavailable | none needed |
 
 If none are installed, the CLAUDE.md rows and routing entries that reference them are
 harmless no-ops.
