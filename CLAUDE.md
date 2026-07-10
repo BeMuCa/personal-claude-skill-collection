@@ -73,6 +73,7 @@ When reporting information to the user, be extremely concise - sacrifice grammar
 | Situation | You MUST invoke |
 |---|---|
 | Non-trivial problem, design decision, or ambiguous request | `rigorous-reasoning` |
+| Exploring or reading code to answer a question | `exploration-router` |
 | Writing or modifying code | `disciplined-implementation` |
 | Stating facts about unfamiliar code, APIs, or libraries | `grounded-claims` |
 | About to claim work is complete | `superpowers:verification-before-completion` |
