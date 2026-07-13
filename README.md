@@ -12,7 +12,7 @@ Copy into `~/.claude/` on the target machine:
 | From this repo | To | Effect |
 |---|---|---|
 | `CLAUDE.md` | `~/.claude/CLAUDE.md` | Always-on operating rules, every session, every model. If one already exists, merge — don't overwrite. |
-| `skills/*` | `~/.claude/skills/` | Seven skills (rigorous-reasoning, disciplined-implementation, grounded-claims, project-setup, spec-sync, quality-run, exploration-router), auto-discovered. |
+| `skills/*` | `~/.claude/skills/` | Eight skills (rigorous-reasoning, disciplined-implementation, grounded-claims, project-setup, spec-sync, quality-run, exploration-router, portable-module), auto-discovered. |
 | `hooks/*.js` | `~/.claude/hooks/` | verify-gate (verification reminder after code-changing turns) and spec-guard (spec-update reminder; self-disabling outside spec-tree repos). |
 | `settings.snippet.json` | merge keys into `~/.claude/settings.json` | Registers both hooks (Stop + SubagentStop) and disables Claude commit/PR attribution. Replace `NODE` with `which node` output — hook commands need an absolute interpreter path. |
 
