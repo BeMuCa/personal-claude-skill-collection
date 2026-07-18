@@ -15,7 +15,8 @@ Updated: 2026-07-08.
 | Skill | `skills/spec-sync/` | Semantic spec-vs-code drift review for spec-tree repos |
 | Hook | `hooks/verify-gate.js` | Stop/SubagentStop: one-shot verification reminder after code-changing turns; fail-open |
 | Hook | `hooks/spec-guard.js` | Stop/SubagentStop: one-shot spec-update reminder; self-disabling in repos without `SPEC-TREE.md`; fail-open |
-| Settings | `settings.json` | Hook registrations (Stop/SubagentStop ×2 each) + `attribution: {commit:"", pr:""}` (no Claude commit/PR attribution) + pre-existing GSD/gitnexus hooks |
+| Hook | `hooks/db-schema-guard.js` | Stop/SubagentStop: one-shot DB-SCHEMA.md-update reminder when a schema file changes; self-disabling in repos without a `DB-SCHEMA.md`; fail-open |
+| Settings | `settings.json` | Hook registrations (Stop/SubagentStop ×3 each) + `attribution: {commit:"", pr:""}` (no Claude commit/PR attribution) + pre-existing GSD/gitnexus hooks |
 | Design docs | `docs/superpowers/specs/`, `docs/superpowers/plans/` | Specs and implementation plans for the above |
 
 Also tracked as baseline (managed by their own installers — do not hand-edit):
@@ -41,4 +42,4 @@ Also tracked as baseline (managed by their own installers — do not hand-edit):
 
 - Non-fork subagents (general-purpose, custom agents) DO receive the global CLAUDE.md, per Claude Code docs and verified by a clean re-test. The built-in Explore and Plan agents are the exception — they skip CLAUDE.md for speed. AGENTS.md is not loaded by Claude Code.
 - verify-gate triggers on any Bash use, including read-only commands; benign one-shot.
-- spec-guard cannot see file changes made via Bash commands (only Edit/Write/NotebookEdit).
+- spec-guard cannot see file changes made via Bash commands (only Edit/Write/NotebookEdit). db-schema-guard shares this gap (e.g. `alembic revision --autogenerate` is unseen).

@@ -15,6 +15,11 @@
         "hooks": [
           { "type": "command", "command": "\"NODE\" \"$HOME/.claude/hooks/spec-guard.js\"", "timeout": 5 }
         ]
+      },
+      {
+        "hooks": [
+          { "type": "command", "command": "\"NODE\" \"$HOME/.claude/hooks/db-schema-guard.js\"", "timeout": 5 }
+        ]
       }
     ],
     "SubagentStop": [
@@ -26,6 +31,11 @@
       {
         "hooks": [
           { "type": "command", "command": "\"NODE\" \"$HOME/.claude/hooks/spec-guard.js\"", "timeout": 5 }
+        ]
+      },
+      {
+        "hooks": [
+          { "type": "command", "command": "\"NODE\" \"$HOME/.claude/hooks/db-schema-guard.js\"", "timeout": 5 }
         ]
       }
     ]
